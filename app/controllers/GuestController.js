@@ -21,6 +21,6 @@ export const getBlogById = async (req, res) => {
 };
 
 export const getBlogsImage = async (req, res) => {
-    let result = await GetImageService(req.header.imageName)
+    let result = await GetImageService(req.params.id)
     return res.sendFile(result)
 }

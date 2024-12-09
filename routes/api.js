@@ -25,6 +25,6 @@ router.delete('/blogs/:id', AuthMiddleware, BlogController.deleteBlog);
 
 router.get('/guest/blogs', GuestController.getAllBlogs);
 router.get('/guest/blogs/:id', GuestController.getBlogById);
-router.get('/guest/blogs/:imageName', GuestController.getBlogsImage);
+router.get('/guest/image/:id', GuestController.getBlogsImage);
 
 export default router;

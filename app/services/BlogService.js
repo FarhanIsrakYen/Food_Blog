@@ -1,7 +1,11 @@
 import { Blog } from "../models/blogModel.js";
 import { uploadImage } from "../utilities/fileUtility.js";
-import path from "path";
+import {fileURLToPath} from 'url';
+import path, {dirname} from 'path';
 import mongoose from "mongoose";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export const CreateBlogService = async (req) => {
     try {
