@@ -1,11 +1,8 @@
-import { Blog } from "../models/blogModel.js";
-import { uploadImage } from "../utilities/fileUtility.js";
-import {fileURLToPath} from 'url';
-import path, {dirname} from 'path';
 import mongoose from "mongoose";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import path from 'path';
+import { Blog } from "../models/blogModel.js";
+import { getUploadDir, uploadImage } from "../utilities/fileUtility.js";
+import fs from "fs";
 
 export const CreateBlogService = async (req) => {
     try {
@@ -174,10 +171,17 @@ export const DeleteBlogService = async (req) => {
     }
 };
 
-export const GetImageService = async(imageName) => {
+export const GetImageService = async (imageName) => {
     try {
-        return path.join(__dirname, '../../uploads/', imageName)
+        const uploadDir = getUploadDir();
+        const imagePath = path.join(uploadDir, imageName);
+
+        if (fs.existsSync(imagePath)) {
+            return imagePath;
+        } else {
+            throw new Error('Image not found');
+        }
     } catch (error) {
-        return {status: false, message: error.toString()}
+        return { status: false, message: error.toString() };
     }
-}
+};
