@@ -31,6 +31,7 @@ app.use(limiter)
 
 
 app.set('etag', WEB_CACHE)
+app.use('/uploads', express.static('public/uploads'));
 
 mongoose.connect(DATABASE, {autoIndex:true}).then(()=> {
     console.log("DB connected")

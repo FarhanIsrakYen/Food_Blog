@@ -179,7 +179,7 @@ export const GetImageService = async (imageName) => {
         if (fs.existsSync(imagePath)) {
             return imagePath;
         } else {
-            throw new Error('Image not found');
+            console.error('Image not found');
         }
     } catch (error) {
         return { status: false, message: error.toString() };

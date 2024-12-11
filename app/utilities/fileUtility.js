@@ -1,11 +1,8 @@
 import fs from 'fs';
-import path, {dirname} from 'path';
-import {Blog} from "../models/blogModel.js";
-import {fileURLToPath} from 'url';
+import path from 'path';
+import { Blog } from "../models/blogModel.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const UPLOAD_DIR = process.env.NODE_ENV === 'production' ? '/tmp' : path.join(__dirname, '../../uploads');
+const UPLOAD_DIR = path.join(process.cwd(), 'public/uploads');
 
 export const uploadImage = async (req, requestType = 'create', id = null) => {
     const uploadedFile = req.files.image;

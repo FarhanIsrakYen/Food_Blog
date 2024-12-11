@@ -13,5 +13,11 @@
   ],
   "routes": [
     { "src": "/(.*)", "dest": "/" }
+  ],
+  "rewrites": [
+    {
+      "source": "/uploads/:path*",
+      "destination": "/public/uploads/:path*"
+    }
   ]
 }
